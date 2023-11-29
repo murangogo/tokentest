@@ -9,7 +9,7 @@ export default async function checkAuth(request, response) {
 
     const decoded = jwt.verify(token, 'ABCDEF123');
     // 令牌有效，返回用户信息或其他需要的数据
-    return response.status(200).json({ username: decoded.username });
+    return response.status(200).json({ username: decoded.inputUsername });
   } catch (error) {
     return response.status(401).json({ error: '无效的令牌或令牌已过期' });
   }

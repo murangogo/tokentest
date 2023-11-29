@@ -29,13 +29,6 @@ export default async function getuserpw(request, response) {
       expiresIn: '1h' // 设置令牌过期时间
     });
 
-    // 设置Cookie
-    // response.cookie('token', token, {
-    //   httpOnly: false,
-    //   secure: false,
-    //   sameSite: 'strict', 
-    //   maxAge: 3600000
-    // });
     const cookie = `token=${token}; Max-Age=3600; HttpOnly; Path=/; SameSite=Strict`;
     response.setHeader('Set-Cookie', cookie);
 
