@@ -19,15 +19,14 @@ function LoginPage() {
     // 查询密码
    try {
       setErrorMessage('正在登录，请稍候...');
-      const response = await fetch(`/api/checkusers?username=${username}`);
+      const response = await fetch(`/api/login?username=${username}&password=${password}`);
       const data = await response.json();
       if (data.error) {
         throw new Error(data.error);
       }
-      if (data.password === password) {
-        navigate(`/home?username=${username}`);  // 跳转到主页面
-      } else {
-        setErrorMessage('密码不正确。');
+      if(response.ok){
+        navigate(`/home`);  // 跳转到主页面
+        setErrorMessage('登录成功，正在跳转到主界面');
       }
    } catch (error) {
      setErrorMessage(error.message || '登录失败');
