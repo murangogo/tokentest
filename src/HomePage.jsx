@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
   const navigate = useNavigate();
-  let username = '';
+  const [username, setUsername] = useState('');
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -14,7 +14,7 @@ function HomePage() {
         if (!response.ok) {
           throw new Error(data.error || '未授权');
         }else{
-          username = data.username;
+          setUsername(data.username);
         }
         
         // 如果用户已登录，可以在这里设置用户状态或执行其他操作
